@@ -3,7 +3,8 @@ function site_title(){
 }
 
 function site_links(x){
-   return `<li><a href="${dots(x)}/index.html">Index</a></li>
+    return `<li><a href="${dots(x)}/index.html">Index</a></li>
+	    <li><a href="${dots(x)}/about.html">About</a></li>
 	   <li><a href="${dots(x)}/lectures.html">Lectures</a></li>
    	   <li><a href="${dots(x)}/resources.html">Resources</a></li>`;
 }
