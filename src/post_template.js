@@ -5,8 +5,8 @@ function site_title(){
 function site_links(x){
     return `<li><a href="${dots(x)}/index.html">Index</a></li>
 	    <li><a href="${dots(x)}/about.html">About</a></li>
-	   <li><a href="${dots(x)}/lectures.html">Lectures</a></li>
-   	   <li><a href="${dots(x)}/resources.html">Resources</a></li>`;
+	    <li><a href="${dots(x)}/lectures.html">Lectures</a></li>
+   	    <li><a href="${dots(x)}/resources.html">Resources</a></li>`;
 }
 
 function dots(x){
@@ -19,9 +19,10 @@ function dots(x){
 }
 
 function template(x){
-    console.log('HHHHHHHHH');
-    console.log('url',x.url);
-    // meta variables x.title and x.data
+    // meta variables x.title and x.data x.level x.disqus_id
+    // typical value
+    // x.disqus_id = "/2016-09-08-Some-title.html"
+    var url = "https://joearms.github.io/published" + x.disqus_id;
     var t = `
 <html>
   <meta charset="UTF-8">
@@ -46,7 +47,7 @@ function template(x){
 	<!-- the tweet button -->
 	<p>	    
 	  <a href= "https://twitter.com/share"  class="twitter-share-button" 
-             data-url= ${x.url}>Tweet</a>
+             data-url= ${url}>Tweet</a>
         </p>
   
         <script type="text/javascript"
@@ -60,11 +61,12 @@ function template(x){
           <script type="text/javascript">
       // var disqus_developer = 1;
       var disqus_shortname = 'joearmstrongsblog';
-      var disqus_identifier = '/2013/03/27/promoting-erlang';
-      var disqus_url = 'http://joearms.github.com/2013/03/27/promoting-erlang.html';
+      var disqus_identifier = '${x.disqus_id}';
+      var disqus_url = '${url}';
       (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
     </script>
