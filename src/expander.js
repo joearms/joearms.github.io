@@ -17,7 +17,7 @@ var local_var = new Array();
 
 function main(){
     var level;
-    console.log('expander');
+    // console.log('expander');
     var tag = document.getElementById('top');
     var str = tag.value;
     // first process all the data
@@ -29,13 +29,9 @@ function main(){
     } else {
 	level = 1;
     };
-    var x = {title:the_title(),data:html, level:level};
-    // console.log('**** TITLE=', the_title());
-    // console.log('**** TITLE=', x.title);
-    
+    var x = {title:the_title(),data:html, level:level, url:the_url()};
     var z = template(x);
     // console.log('z',z);
-    // var n = document.createElement('div');
     // n.innerHTML = z;
     // insertAfter(n, tag);
     document.open();
@@ -46,27 +42,20 @@ function main(){
 function render_debug(){
     var str = t1.value;
     var lines = str.split("\n");
-    console.log('lines', lines);
+    // console.log('lines', lines);
     var blocks = pass1(lines);
-    console.table(blocks);
-    console.log("pass1 blocks=", blocks);
+    //console.table(blocks);
     blockid.innerHTML = showit(blocks);
-    //document.getElementById('out').appendChild(tab);
     var forms = pass2(blocks);
-    console.log("pass2 forms=", forms);
+    //console.log("pass2 forms=", forms);
     formid.innerHTML = showit(forms);
-    //console.log("pass2 blocks=", blocks);
 }
 
 function md_to_html(str){
     var lines = str.split("\n");
-    // console.log('lines', lines);
     var blocks = pass1(lines);
     console.table(blocks);
-    console.log("pass1 blocks=", blocks);
-    //document.getElementById('out').appendChild(tab);
     var forms = pass2(blocks);
-    console.log("pass2 forms=", forms);
     var html = forms_to_html1(forms);
     return html;
 }
@@ -75,22 +64,14 @@ function render_nicely(tagId){
     var tag = document.getElementById(tagId);
     var str = tag.value;
     var lines = str.split("\n");
-    console.log('lines', lines);
     var blocks = pass1(lines);
     console.table(blocks);
-    console.log("pass1 blocks=", blocks);
-    //document.getElementById('out').appendChild(tab);
     var forms = pass2(blocks);
-    console.log("pass2 forms=", forms);
     var html = forms_to_html1(forms);
     var n = document.createElement('div');
     n.innerHTML = html;
     insertAfter(n, tag);
-    
-    //console.log("pass2 blocks=", blocks);
 }
-
-
 
 function test(){
     // parse( "ab\n12");
@@ -126,7 +107,6 @@ function pass1(line){
     var i=0;
     var stop, j;
     while(i < line.length){
-	// console.log('block=',block);
 	var ln = line[i];
 	if(ln.startsWith('*')){
 	    block.push({type:'header', data:ln});
@@ -194,9 +174,7 @@ function pass2(b){
     var f = new Array();
     var i = 0;
     var dat;
-    console.log('b', b);
     while(i < b.length){
-	// console.log('looking',i,b[i]);
 	switch (b[i].type) {
 	case 'anchor':
 	    dat = b[i].data;
@@ -209,7 +187,6 @@ function pass2(b){
 	    var j = 0;
 	    dat = b[i].data;
 	    while(dat.charAt(j++) == '*');
-	    // console.log('header ***');
 	    f.push({type:'header', level:j-1,data:dat.substring(j-1,dat.length)});
 	    i++;
 	    break;
@@ -264,17 +241,13 @@ function pass2(b){
 	    // collect while is string
 	    var s = "";
 	    while(i < b.length) {
-		// console.log('aa i,b,type',[i,b[i],b[i].type]);
 		if(b[i].type == 'string') {
 		    s += b[i].data + " ";
 		    i++;
 		} else {
-		    // console.log('breaking with',i);
 		    break;
 		};
 	    };
-	    // console.log('here',i,s);
-	    //f.push({a:'para',txt:s});
 	    f.push({type:'para', data: s});
 	    break;
 	case 'blockquote':
@@ -358,15 +331,13 @@ function pass2(b){
 	case 'var':
 	    // @var varname = "..."
 	    var m = b[i].data.match(/@var\s*([a-z_]*)\s*=\s*"(.*)"/);
-	    console.log('matching var', b[i].data);
-	    console.log('var', m[1],'=',m[2]);
 	    if(m){
 		local_var[m[1]] = m[2];
 	    };
 	    i++;
 	    break;
 	default:
-	    console.log('oops', b[i]);
+	    // console.log('oops', b[i]);
 	    i++;
 	    break;
 	};
@@ -453,9 +424,17 @@ function forms_to_html1(forms){
     return s;
 }
 
+function the_url(){
+    var u = window.location.pathname;
+    console.log('XXXXXXX', u);
+    var p = "https://joearms.github.io/published/" +
+	u.substring(u.lastIndexOf('/')+1);
+    return p;
+}
+
 function the_title(){
     if(local_var['title']){
-	console.log('TITLE','=',local_var['title']);
+	// console.log('TITLE','=',local_var['title']);
 	return local_var['title'];
     } else {
 	var u = window.location.pathname;
@@ -466,7 +445,7 @@ function the_title(){
 	var t1 = filename.substring(11);
 	var t2 = t1.slice(0,-5);
 	var t3 = t2.replace(/-/g, " ");
-	console.log('TITLE','=',t3);
+	// console.log('TITLE','=',t3);
 	return t3;
     }
 }
@@ -480,7 +459,6 @@ function expand_inlines(s) {
     s = expand_inline(s, "`", "<span class='code'>", "</span>");
     s = expand_inline(s, "__", "<span class='yellow'>", "</span>");
     s = expand_inline(s, "**", "<i>", "</i>");
-
     s = expand_links(s);
     // do strike last
     s = expand_inline(s, "~~", "<strike>", "</strike>");
@@ -525,7 +503,7 @@ function expand_links(s) {
 	var mid = s.substring(start+2, stop);
         var s2 = s.substring(stop+2, s.length);
 	// mid might be in two segments
-	console.log('mid=',mid);
+	// console.log('mid=',mid);
 	linksep = mid.indexOf("][");
 	if (linksep == -1) {
 	    // there is only segment
@@ -535,9 +513,7 @@ function expand_links(s) {
 	    // two parts
 	    var ref = mid.substring(0, linksep);
 	    var txt = mid.substring(linksep+2, mid.length);
-	    console.log('ref',ref,'text',txt);
 	    link = "<a href='" + ref + "'>" + txt + "</a>"; 
-	    // alert("a="+a+"b="+b+"link2="+link);
 	    s = s1 + link + s2;
 	}
     }

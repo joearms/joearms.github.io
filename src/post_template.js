@@ -19,6 +19,8 @@ function dots(x){
 }
 
 function template(x){
+    console.log('HHHHHHHHH');
+    console.log('url',x.url);
     // meta variables x.title and x.data
     var t = `
 <html>
@@ -48,7 +50,7 @@ function template(x){
         </p>
   
         <script type="text/javascript"
-                src="http://platform.twitter.com/widgets.js"></script>
+                src="https://platform.twitter.com/widgets.js"></script>
         <!-- end of tweet button -->
 
         <p>Comments:</p>
