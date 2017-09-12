@@ -1,0 +1,95 @@
+#!/usr/bin/env escript
+
+-mode(compile).
+
+main([]) ->
+    make_index("published", "index"),
+    make_index("drafts", "index_drafts").
+
+make_index(Source, Index) ->
+    L = filelib:wildcard("../" ++ Source ++ "/*.html"),
+    La = lists:reverse(lists:sort(L)),
+    L1 = [cvt(I) || I <- La],
+    L2 = ["<textarea style='display:none' id='top'>\n",
+	  "@var level= \"0\"\n",
+	  "@var title = \"Index\"\n",
+	  "@var tags = \"index\"\n\n",
+       	  "@include{index}\n",
+	  L1,
+	  "@END\n",
+	  "</textarea>\n",
+	  "<script src='./src/post_template.js'></script>\n",
+	  "<script src='./src/expander.js'></script>\n"],
+    Out = "../" ++ Index ++ ".html", 
+    file:write_file(Out, [L2]),
+    io:format("Wrote: ~p~n",[Out]).
+    
+
+cvt(File) ->
+    %% io:format("Processing: ~p~n",[File]),
+    include_processor:do_includes(File),
+    {ok, B} = file:read_file(File),
+    Title = must_get_title(File, 1000, binary_to_list(B)),
+    Date = date_from_filename(File),
+    io:format("~p => ~p~n",[Date, File]),
+    ["<li>",Date, "&raquo; ",
+     "<a href='", change_root(File), "'>", Title,"</a></li>\n"].
+
+change_root("../" ++ T) -> "./" ++ T.
+
+%% <li>08 Aug 2016  &raquo; <a href='./2016/08/08/Draft-Payment-System-in-Erlang.html'>How to make an efficient payment system in Erlang</a></li>
+
+must_get_title(F, 0, _) ->
+    exit({F,has_no_title_is_first_1K_characters});
+must_get_title(_, _, "\n@var title" ++ T) ->
+    Str = get_to_eol(T, []),
+    parse_title(Str);
+must_get_title(F, K, [_|T]) ->
+    must_get_title(F, K-1, T);
+must_get_title(F, _, []) ->
+    exit({F,hase_no_title}).
+
+parse_title(S) ->
+    case  erl_scan:string(S) of
+	{ok, [{'=',_},{string,_,Title}], _} ->
+	    Title;
+	U ->
+	    exit({cannot_parse_title,U,S})
+    end.
+
+%% trim(X) -> elib2_misc:trim(X).
+
+get_to_eol([$\n|_], L) ->
+    lists:reverse(L);
+get_to_eol([H|T], L) ->
+    get_to_eol(T, [H|L]).
+
+    
+date_from_filename(F) ->
+    date_from_filename1(filename:basename(F)).
+
+date_from_filename1([Y1,Y2,Y3,Y4,$-,M1,M2,$-,D1,D2,$-|_]) ->
+    Day = [D1,D2],
+    Year = [Y1,Y2,Y3,Y4],
+    Month = monthname([M1,M2]),
+    iolist_to_binary([Day,$\s,Month,$\s,Year,$\s]);
+date_from_filename1(_) ->
+    <<"Date Unknown">>.
+
+monthname("01") -> "Jan";
+monthname("02") -> "Feb";
+monthname("03") -> "Mar";
+monthname("04") -> "Apr";
+monthname("05") -> "May";
+monthname("06") -> "Jun";
+monthname("07") -> "Jul";
+monthname("08") -> "Aug";
+monthname("09") -> "Sep";
+monthname("11") -> "Nov";
+monthname("12") -> "Dec".
+
+title(I) ->
+    case re:run(I, "\\d{4}-\\d{2}-\\d{2}-.*\\.html") of
+	{match, _} -> {yes, I};
+	_          -> no
+    end.
