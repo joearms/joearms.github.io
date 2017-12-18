@@ -4,7 +4,8 @@
 
 main([]) ->
     make_index("published", "index"),
-    make_index("drafts", "index_drafts").
+    make_index("drafts", "index_drafts"),
+    make_index("whoomph", "index_whoomph").
 
 make_index(Source, Index) ->
     L = filelib:wildcard("../" ++ Source ++ "/*.html"),

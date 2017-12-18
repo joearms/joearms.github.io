@@ -1,0 +1,22 @@
+This is the top level of the blogger
+
+make
+  creates
+     index.html index_drafts.html
+     and updates all files
+
+src/ the blogger software
+     expand.js
+     page_tempate.js
+     style.css
+     make_index.es  -- script to buold the includes
+     do_includes.es -- script to perform includes
+     lint.es        -- sanity check of inputs
+
+To publish a file move it to ./published
+then type make - then checking index.html and the new HTML file
+drafts is NOT checked in
+
+
+
+  

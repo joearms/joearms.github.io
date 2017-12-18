@@ -1,37 +1,3 @@
-function old_template(x){
-    // meta variables x.title and x.data
-    var t = `
-<html>
-  <meta charset="UTF-8">
-  </meta>
-  <head>
-    <link href="style.css" rel="stylesheet" type="text/css"></link>
-  </head>
-    <body>
-	<header>
-	  <nav>
-	    <h1>Joe Armstrong - Erlang and other stuff</h1>
-	    <ul class="nav inline-items">
-	      <li><a href="./index.html">Index</a></li>
-	      <li><a href="./lectures.html">Lectures</a></li>
-	      <li><a href="./resources.html">Resources</a></li>
-	    </ul>
-	  </nav>
-	</header>
-	<div class="chapter">
-	  <div class="chapter_header">
-	    <h1>${x.title}</h1>
-	  </div>
-	  <content>
-	    ${x.data}
-	  </content>
-	</div>
-    </body>
-  </head>
-  </html>`
-    return t;
-}
-
 function site_title(){
     return "<h1>Joe Armstrong - Erlang and other stuff</h1>";
 }

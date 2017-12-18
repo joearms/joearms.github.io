@@ -1,0 +1,280 @@
+<textarea style='display:none' id='top'>
+@var title = "Calling Elixir from Erlang"
+@var tags = "markdown"
+
+Calling Erlang from Elixir is pretty well documented - not
+surprisingly since there is far more Erlang code than Elixir code and
+Elixir programmers want to reuse Erlang libraries.
+
+What about the other direction? How can Erlang call Elixir code?
+
+Here's how I did it.
+
+* The Problem
+
+The other day I decided that my images were in a mess.
+``My images'' means the images that I've taken on my iPhone
+and which Apples software has very kindly moved to my iMac.
+
+Very unkindly, Apple provides zero information as to where the images
+are stored and in what format, so a little experimentation and
+guesswork is called for.
+
+After a little poking around I discovered that my images were stored
+under `/Users/joe/Pictures/Photos Library.photoslibrary/Masters`
+in a `Year/Month/Day` sub-directory structure.
+Here's an example of this directory structure.
+
+<pre>
+$ cd /Users/joe/Pictures/Photos Library.photoslibrary/Masters/2017/10/01
+$ tree
+.
+├── 20171001-173237
+│   └── IMG_3089.JPG
+├── 20171001-173238
+│   └── IMG_3097.JPG
+├── 20171001-173239
+│   └── IMG_3094.JPG
+├── 20171001-173240
+│   └── IMG_3098.JPG
+└── 20171001-173241
+    └── IMG_3099.JPG
+</pre>
+
+As far as I can see Apple uses two files and one directory per image
+instead of just one file, which is completely consistent with their
+policy of gratuitously wasting space on my hard disk. I assume this is
+to encourage me to buy a larger disk the next time I buy a new machine
+from them.
+
+Anyway, I've found  the original image files and now all I want to do is
+collect them, move them someplace else and extract a small amount of
+metadata from the files.
+
+The images contain things like the latitude and longitude of the place
+where the image was taken and the time when the image was taken.
+There's a lot of extra information in the image files, but I don't
+care about this.
+
+For now all I want to do is extract the latitude and longitude from an
+image file.
+
+* Extracting Exif Data
+
+The image files contain a block of data at the beginning containing
+so called ``Exif'' data (`Exif` stands `Exchangable Image File`) the
+format was defined in the days when storage was expensive. It's a
+binary format which is rather difficult to unpack.  This is ironic,
+the format `inside` a JPG file is optimize to save space but Apples
+directory structure is profligate and wastes space.
+
+For a long time I've had an Erlang library that
+extracts Exif data from image files -- but it could not extract
+the GPS data.
+
+I Googled a bit and found some Erlang code but it was out of date and
+would need some TLC to make it work -- then I stumbled over Dave
+Thomas's library at [[https://github.com/pragdave/exexif]] ``Very nice I
+thought,'' I can use his code. But how?
+
+[[https://github.com/pragdave/exexif/blob/master/README.md]] was written with
+the Elixir Programmer in mind, not me.
+
+I fiddled for a couple of hours, and got everything working. Here's how:
+
+* Setting up the Elixir code
+
+** 1) Download Elixir make sure it and mix work.
+
+** 2) Create a new project.
+
+I did this in my `~/nobackup`  directory
+which is where I do most of my experiments (so I can delete everything later):
+
+<pre>
+$ cd ~/nobackup
+$ mix new ecode
+</pre>
+
+Mix creates a new directory called `ecode` an populates it with a few
+files -- I took a look to see what had been created:
+
+<pre>
+$ cd ecode
+$ tree
+.
+├── README.md
+├── config
+│   └── config.exs
+├── lib
+│   └── ecode.ex
+├── mix.exs
+└── test
+    ├── ecode_test.exs
+    └── test_helper.exs
+</pre>
+
+Next I edited `ecode/mix.exs` so that the definition of the
+function `deps` looked like this:
+
+<pre>
+defp deps do
+    [
+      {:exif, github: "pragdave/exexif", app: false},
+    ]
+end
+</pre>
+The `app:false` bit in this line is important, somebody probably knows
+why, but I don't (I wasted about an hour before I discovered this :-)
+
+** 3) Give these commands
+
+<pre>
+$ cd ~/ecode
+$ mix deps.get
+$ mix deps.compile
+</pre>
+
+The `deps.get` and `deps.compile` comands do some amazing things
+and magically 17 directories and 40 files appear under the
+`ecode` root.
+
+> At this stage with super-human willpower I resisted temptation
+to look at every single file that had been created and examine the
+content in detail. Part of me really wants to know what's in all these files,
+another part of me just wants to extract the Exif data from an image file.
+
+* Setting up the Erlang code
+
+Now I'm back on familiar territory.
+
+First create a directory to work in with and an image:
+
+<pre>
+  $ mkdir ~/noback/exif
+  $ cd ~/nobackup/exif
+  $ cp ~/Pictures/Photos\ Library.photoslibrary/\
+     Masters/2017/10/01/20171001-173237/IMG_3089.JPG test.jpg
+</pre>
+
+Now for some code that sets up the paths to the Elixir code and starts the
+Elixir subsystem:
+
+<pre>
+$ cd ~/nobackup/exif
+$ cat test1.erl
+-module(test1).
+-compile(export_all).
+
+load() ->
+    code:add_path("/usr/local/Cellar/elixir/1.5.1/lib/elixir/ebin/"),
+    code:add_path("../ecode/_build/dev/lib/exif/ebin/"),
+    application:start(compiler),
+    application:start(elixir).
+
+test() ->
+    io:format("~p~n",['Elixir.Exexif':exif_from_jpeg_file(<<"./test.jpg">>)]).
+</pre>
+
+Now we can compile and run this:
+
+<pre>
+$ cd ~/nobackup/exif
+$ erl
+1> c(test1).
+{ok, test1}
+1> test1:load().
+ok
+2> test1:test().
+{ok,#{exif =>
+           #{aperture_value => 2.275,brightness_value => 1.045,
+             color_space => &lt;&lt;"sRGB">>,
+             component_configuration => &lt;&lt;"Y,Cb,Cr,-">>,
+	     datetime_original => &lt;&lt;"2017:09:30 14:16:26">>,
+   ...
+       gps =>
+           #{gps_area_information => nil,
+             gps_latitude_ref => &lt;&lt;"N">>,
+	     ...
+             gps_latitude => [59,53,56.11],
+	   ...
+</pre>
+
+Great -- it works :-).
+
+Now all that's needed is an interface function:
+
+<pre>
+ image_info(File) ->
+     {ok, I} = 'Elixir.Exexif':exif_from_jpeg_file(File),
+     #{exif := E, gps := G, orientation := O} = I,
+     #{datetime_original := Time,
+       exif_image_height := Ht,
+       exif_image_width  := Width} = E,
+     #{gps_latitude := Lat,
+       gps_longitude := Long
+      } = G,
+     #{time => Time,
+       ht => Ht,
+       width => Width,
+       orientation => O,
+       latitude => Lat,
+       longitude => Long
+      }.
+</pre> 
+
+Which works as follow:
+
+<pre>
+> test1:test1().
+#{ht => 2448,
+  latitude => [59,53,56.11],
+  longitude => [17,37,50.88],
+  orientation => &lt;&lt;"Rotate 90 CW">>,
+  time => &lt;&lt;"2017:09:30 14:16:26">>,width => 3264}
+</pre>
+
+* Questions
+
+There some problems I haven't really solved here, so if anybody has any
+comments or improvements I'd like to include them here.
+
+1) How can I add the current version of DT's software. The code:
+
+<pre>
+defp deps do
+    [
+      {:exif, github: "pragdave/exexif", app: false},
+    ]
+end
+</pre>
+Pulls in the `latest` version of Dave's code. How can I pull in
+the version that I used today when I tested the code. I'd like anybody
+repeating this experiment in a few years time to get the same results as I got today.
+
+2) I created a mix project to store Dave's code -- is there some other
+way? Is this way ``recommended''?
+
+3) I looked for, but couldn't find, a definitive guide to calling Elixir
+code from Erlang -- is there such a guide?
+
+3) There's a small problem in the formatting of this blog. Extra blank lines
+creep into preformatted blocks. For example:
+
+<pre>
+  A
+
+  B
+</pre>
+
+There should be one blank line between the `A` and `B` not two.
+
+4) Why did I write the blog this way? Do view source and ask ``why did
+he do it this way?'' If enough people are curiosus I'll tell you why
+in a later posting.
+
+
+
+</textarea>
+<script src='../src/post_template.js'></script>
+<script src='../src/expander.js'></script>

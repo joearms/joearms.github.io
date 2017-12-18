@@ -1,5 +1,5 @@
 /**
- * bookmaker - a markup parser
+ * expander.js - a markup parser
  * Copyright (c) 2017-9999, Joe Armstrong (MIT Licensed)
  * https://github.com/joearms/bookmaker
  *
@@ -418,6 +418,9 @@ function forms_to_html1(forms){
 	    s += "<" + h + ">" + forms[i].data + "</" + h + ">";
 	    break;
 	case 'para':
+	    console.log('para str=',forms[i].data);
+	    console.log('para expanded=',expand_inlines(forms[i].data));
+	    
 	    s += "<p class='para'>" +
 		expand_inlines(forms[i].data) + "</p>";
 	    break;
@@ -475,10 +478,10 @@ function the_title(){
 function expand_inlines(s) {
     s = s.replace(/``/g, "&ldquo;");
     s = s.replace(/''/g, "&rdquo;");
+    s = s.replace(/--/g, "&ndash;");
     s = expand_inline(s, "`", "<span class='code'>", "</span>");
     s = expand_inline(s, "__", "<span class='yellow'>", "</span>");
     s = expand_inline(s, "**", "<i>", "</i>");
-
     s = expand_links(s);
     // do strike last
     s = expand_inline(s, "~~", "<strike>", "</strike>");

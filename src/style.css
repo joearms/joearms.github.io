@@ -12,7 +12,6 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-
     color: #444;
     background-color: #F4F4F4;
     background-image: url(bgnoise.png);
@@ -89,10 +88,10 @@ div.idea {
 div.chapter_header {
     text-align:right;
     size:5em;
-    margin-bottom:200px;
+    margin-bottom:100px;
 }
 
-blockquote {
+div.blockquote, blockquote {
     padding: 10px 15px;
     background-color: #eeeeee;
     padding: 0 0 0 15px;
