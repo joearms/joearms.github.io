@@ -1,0 +1,11 @@
+created: 20181216170705227
+modified: 20181216170723447
+tags: ongithub
+title: SharedTiddlers
+type: text/vnd.tiddlywiki
+
+My shared tiddlers are on github at the address https://joearms.github.io/tiddlers/*.tid
+
+$:/config/FileSystemPaths
+
+For details read Customising Tiddler File Naming

@@ -1,0 +1,93 @@
+created: 20181216095733996
+modified: 20181216165405668
+tags: ongithub
+title: A programmers introduction to the TiddlyWiki
+type: text/vnd.tiddlywiki
+
+This introduction assumes you know  HTML, Markdown, JS and a few programming languages
+
+The TiddlyWikki (abbreviated TW) can be downloaded from https://tiddlywiki.com/
+this is the definitive version. You should always refer to this version in an updates or queries about this article.
+
+The TW is made up of a large number of so called //tiddlers//.
+
+Tiddlers are written in a language called WikiText. ~WikiText is broadly similar to Markdown. Unlike Markdown ~WikiText can contain embedded code which modifies what is displayed.
+
+A Tiddler is a container for the following information: 
+
+# A title
+# A set of tags
+# A body of Wiki text
+# A set of key/value pairs
+# Diverse meta data (like time last modified etc.)
+
+The expansion of ~WikiData can be made to depend upon the values of the tags and various other meta data associated with the tiddler. So, for example, we can arrange that all tiddlers with the tag `secret` are displayed with a large banner at the top of the rendered tiddler, containing the text //Secret do not publish// - I'll show you how do do this later.
+
+To start the discussion - I'll only talk about Tiddlers with no tags and ones which are only subject to what might be called “standard evaluation”. 
+
+! Standard Evaluation
+
+By //standard evaluation// I mean the mechanism by which ~WikiText is turned in HTML - I assume the mechanism has not been modified in any way by assigning special tags to the tiddler that change the way the tiddler is displayed.
+
+For most purposes standard evaluation is all we need - probably 95% or more of all the tiddlers I write use standard evaluation.
+
+So lets define a few terms:
+
+''~WikiText'' is a sequence of “Markdown-like” expressions 
+macros and widgets. Here is an example:
+
+```
+! Hello world
+<<tag hits>>
+<$list ...>
+  ...
+<$/list>
+```
+The first line `! Hello word` is in ~WikText and expands into:
+
+```
+<h1>Hello World</h1>
+```
+
+The second line is a macro (recognised by the `<<` and `>>` delimiters) and also expands into HTML - what it expands into need no concern us for the moment.
+
+The construction:
+
+```
+<$list ...>
+  ...
+<$/list>
+```
+Is called a widget (in pseudo HTML like syntax)- it also expands into HTML.
+
+The standard evaluation model expands the section of ~WikiText into HTML. It aslo expands the macros and widgets into HTML and concatinates everything togther. The result is displayed with a set of standardisec CSS stylesheets.
+
+Question: Is the evaluation of the embeeed widhets seqencial top-to bottom. Are wiodets evalued inside out or top down?
+
+! Lets start with the wiki text
+
+There is very little to say about this. Something like
+
+```
+! Hello
+!! Hello again
+```
+expands into
+
+```
+<h1>Hello</h1>
+<h2>hello again</h2>
+```
+
+If you are familiar with markdon you will easily undersand this.
+The specif details can be found by consuling the WikiText documentaion.
+
+! Evaluation order in widgets
+
+
+
+
+
+
+
+
