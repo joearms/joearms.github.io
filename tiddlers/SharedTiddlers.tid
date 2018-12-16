@@ -1,11 +1,38 @@
 created: 20181216170705227
-modified: 20181216170723447
+modified: 20181216173659406
 tags: ongithub
 title: SharedTiddlers
 type: text/vnd.tiddlywiki
 
 My shared tiddlers are on github at the address https://joearms.github.io/tiddlers/*.tid
+but you can't see all the files in this directory.
 
-$:/config/FileSystemPaths
+(I have made an index file so you can see these but this was made manually)
 
-For details read Customising Tiddler File Naming
+For details read [[Customising Tiddler File Naming]]
+
+Test by clicking on these
+
+* [[https://joearms.github.io/tiddlers/SharedTiddlers.tid]]
+* [[https://joearms.github.io/tiddlers/A programmers introduction to the TiddlyWiki.tid]]
+
+These pages are made automatically when I push to
+
+[[https://github.com/joearms/joearms.github.io/tree/master/tiddlers]]
+
+I assume one should not serve tiddlers directly from the source but from github pages -- I assume github has some fancy CDN to do this 
+
+Publishing is now quite easy - I just tag a tiddler with `ongithub`
+I have modified $:/config/FileSystemPaths
+to read
+
+```
+[tag[ongithub]addprefix[github/]]
+```
+When I save such a tiddler it gets stored in my local github directory which is symlinked to my git hub account. Then
+it's add/commit/push and we're ready to go.
+
+Did that make sense?
+
+
+
