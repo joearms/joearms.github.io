@@ -1,0 +1,20 @@
+created: 20130405120000000
+modified: 20181218215834483
+tags: published blog concurrency [[ parallel, programming]]
+title: 2013-04-05 Concurrent and Parallel Programming
+type: text/vnd.tiddlywiki
+
+
+What's the difference between concurrency and parallelism?
+
+Explain it to a five year old.
+
+
+{{con_and_par.jpg}}
+
+;Concurrent
+: Two queues and one coffee machine.
+
+;Parallel
+:Two queues and two coffee machines.
+

@@ -1,0 +1,17 @@
+created: 20181213081157885
+modified: 20181213081237936
+tags: swift include blog
+title: funcs1.swift
+type: text/vnd.tiddlywiki
+
+```
+//funcs1.swift
+
+func add(x:Int, y:Int, z:Int) -> Int {
+    return x+y+z
+}
+
+print("add=", add(1,2,3))
+
+</pre>
+```

@@ -1,0 +1,29 @@
+created: 20181213075919092
+modified: 20181213080756401
+tags: swift include blog
+title: experiment1.swift
+type: text/vnd.tiddlywiki
+
+```
+// experiment1.swift
+// run with:
+//  $ swift experiment1.swift
+
+import Cocoa
+
+class AppDelegate: NSObject, NSApplicationDelegate {
+
+    let window = NSWindow()
+
+    func applicationDidFinishLaunching(aNotification: NSNotification) {
+        window.makeKeyAndOrderFront(window)
+        window.level = 1
+    }
+}
+
+let app = NSApplication.sharedApplication()
+let controller = AppDelegate()
+
+app.delegate = controller
+app.run()
+```
