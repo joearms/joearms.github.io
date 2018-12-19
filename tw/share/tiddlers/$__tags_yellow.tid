@@ -1,0 +1,7 @@
+created: 20181219113113895
+modified: 20181219113156420
+tags: $:/tags/Stylesheet
+title: $:/tags/yellow
+type: text/vnd.tiddlywiki
+
+em {background: yellow; font-style:normal}

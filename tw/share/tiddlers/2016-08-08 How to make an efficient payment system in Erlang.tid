@@ -1,5 +1,5 @@
 created: 20160808120000000
-modified: 20181218215446350
+modified: 20181219083405084
 tags: published blog markdown
 title: 2016-08-08 How to make an efficient payment system in Erlang
 type: text/vnd.tiddlywiki
@@ -12,7 +12,7 @@ type: text/vnd.tiddlywiki
 
 <<<
 Making a payment system is like playing a Chopin Waltz - and involves
-a universal method of problem solving which can be applied to any probem.
+a universal method of problem solving which can be applied to any problem.
 <<<
 
 The other day I was sent a rather nice mail by a young programmer who
@@ -218,7 +218,7 @@ changed to criticism. Encouragement is fine to get you started, but
 not sufficient to achieve perfection.
 
 I noticed this years ago, the transition from a schoolkid to
-undergraduate and then PhD student involved being subject to more and
+undergraduate and then ~PhD student involved being subject to more and
 more criticism and less and less praise.
 
 The thing to remember about criticism is that it's not about you.

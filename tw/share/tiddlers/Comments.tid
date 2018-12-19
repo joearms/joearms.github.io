@@ -1,0 +1,34 @@
+created: 20181219080019176
+modified: 20181219113852698
+tags: 
+title: Comments
+type: text/vnd.tiddlywiki
+
+This is awesome -- what I'd like to do now:
+
+# Hide the TW - all I want is a mysterious TW logo 
+# Hide the edit buttons just want a search field
+# Want to change the default font so that “typographic” quotes are displayed correctly
+# Remove the right side bar
+
+! Are my images OK?
+
+To add an image call say `foo.jpg`
+I've added two files to the tidder directory
+
+`foo.jpg.jpg` = copy of `foo.jpg`
+
+and
+
+`foo.jpg.jpg.meta`
+
+with content
+
+```
+reated:20181212145004864
+modified:20181212145004864
+title:foo.jpg
+type:image/jpg
+```
+
+This works but why the extra `.jpg` in the name -- am I doing this correctly?

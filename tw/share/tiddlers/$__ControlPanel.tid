@@ -1,0 +1,10 @@
+color: #bbb
+created: 20181219112514408
+icon: $:/core/images/options-button
+modified: 20181219112515531
+title: $:/ControlPanel
+type: text/vnd.tiddlywiki
+
+<div class="tc-control-panel">
+<<tabs "[all[shadows+tiddlers]tag[$:/tags/ControlPanel]!has[draft.of]]" "$:/core/ui/ControlPanel/Info">>
+</div>

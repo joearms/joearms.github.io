@@ -1,5 +1,5 @@
 created: 20181216095733996
-modified: 20181216165405668
+modified: 20181218104052743
 tags: ongithub
 title: A programmers introduction to the TiddlyWiki
 type: text/vnd.tiddlywiki
@@ -58,13 +58,13 @@ The construction:
   ...
 <$/list>
 ```
-Is called a widget (in pseudo HTML like syntax)- it also expands into HTML.
+Is called a widget (in pseudo HTML like syntax) - it also expands into HTML.
 
-The standard evaluation model expands the section of ~WikiText into HTML. It aslo expands the macros and widgets into HTML and concatinates everything togther. The result is displayed with a set of standardisec CSS stylesheets.
+The standard evaluation model expands the section of ~WikiText into HTML. It also expands the macros and widgets into HTML and concatenates everything together. The result is displayed with a set of standardised CSS stylesheets.
 
-Question: Is the evaluation of the embeeed widhets seqencial top-to bottom. Are wiodets evalued inside out or top down?
+Question: Is the evaluation of the embedded widgets sequential top-to bottom. Are widgets evaluated inside out or top down?
 
-! Lets start with the wiki text
+! Let's start with the wiki text
 
 There is very little to say about this. Something like
 
@@ -79,10 +79,53 @@ expands into
 <h2>hello again</h2>
 ```
 
-If you are familiar with markdon you will easily undersand this.
-The specif details can be found by consuling the WikiText documentaion.
+If you are familiar with markdown you will easily understand this.
+The specific details can be found by consulting the WikiText documentation.
 
-! Evaluation order in widgets
+! Evaluation order in tiddlers
+
+To turn a tiddler into HTML the following rules apply:
+
+# WikiText is expanded into HTML
+# Macros are expanded into HTML
+# Widgets are expanded into HTML
+
+and then the blocks of HTML that are obtained are concatenated to produce the final result. 
+
+! Learning about WikiText expansion
+
+The easiest way to learn WikiText is to make a new tiddler and then a few lines of WikiText to the tiddler, then check in the live preview window to see what the result looks like.
+
+<div class="aq">
+! Is live preview standard?
+
+I have a couple of icons in my edit toolbar 	
+{{$:/core/images/preview-open}} and 
+{{$:/core/images/chevron-down}} with which I can view the HTML and widget tree. I suspect this is a nonstandard plugin
+</div>
+
+```
+Yes but parse tree widhet tree are in a pluguin called
+internals - to install this do 
+```
+
+For example, If I enter
+
+```
+!! hello joe
+```
+
+!! Hello joe
+I can easily check to see that that generated HTML is
+
+```
+<h2 class="">Hello joe</h2>
+```
+
+Now continue with 
+
+* [[Adding Macros to WikiText]]
+*  [[Simple Macro Expansion]]
 
 
 
