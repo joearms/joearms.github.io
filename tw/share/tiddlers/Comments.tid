@@ -1,15 +1,16 @@
 created: 20181219080019176
-modified: 20181219113852698
+modified: 20181219115656946
 tags: 
 title: Comments
 type: text/vnd.tiddlywiki
 
 This is awesome -- what I'd like to do now:
 
-# Hide the TW - all I want is a mysterious TW logo 
+# Hide the TW - all I want is a mysterious TW logo (do not click)
 # Hide the edit buttons just want a search field
 # Want to change the default font so that “typographic” quotes are displayed correctly
 # Remove the right side bar
+# Add tweet button and discourse button as in the original (see  https://joearms.github.io/)
 
 ! Are my images OK?
 
