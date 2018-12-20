@@ -1,0 +1,36 @@
+created: 20181220122417017
+modified: 20181220170149143
+tags: 
+title: Experiments
+type: text/vnd.tiddlywiki
+
+<$button>[[Page]]</$button>
+
+[[$:/core/ui/TopBar/menu]]
+
+[[$:/state/sidebar]]
+
+[[RevealWidget]]
+
+<$reveal state="$:/state/sidebar" type="nomatch" text="no">
+<$button set="$:/state/sidebar" setTo="no" tooltip={{$:/language/Buttons/HideSideBar/Hint}} aria-label={{$:/language/Buttons/HideSideBar/Caption}} class="tc-btn-invisible">{{$:/core/images/chevron-right}}</$button>
+</$reveal>
+<$reveal state="$:/state/sidebar" type="match" text="no">
+<$button set="$:/state/sidebar" setTo="yes" tooltip={{$:/language/Buttons/ShowSideBar/Hint}} aria-label={{$:/language/Buttons/ShowSideBar/Caption}} class="tc-btn-invisible">{{$:/core/images/chevron-left}}</$button>
+</$reveal>
+
+
+[[$:/core/ui/PageTemplate]]
+
+[[$:/core/ui/PageStylesheet]]
+
+[[Don't click here]]
+
+//This is a pre-release//
+
+
+This is migrated from https://joearms.github.io/
+
+The source is in https://github.com/joearms/joearms.github.io/tree/master/tw
+
+[[this is what I want to do now|Comments]]

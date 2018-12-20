@@ -1,0 +1,31 @@
+created: 20181220163750944
+modified: 20181220165423298
+tags: 
+title: PreRelease
+type: text/vnd.tiddlywiki
+
+<div style='background:#FFC0CB'>
+
+
+! Pre Release
+
+This is a pre-release of my Blog. 
+
+The intention is to publish my entire Blog as a single file TiddlyWiki.
+
+The goal is to be largely similar to the current blog at
+https://joearms.github.io/ (If take a look you can see the current blog)
+
+I have converted the entire blog to a single file TW - currently
+at https://joearms.github.io/tw/share/output/index.html
+
+The source code is in the sub-directory found by following this link: https://github.com/joearms/joearms.github.io/tree/master/tw
+
+There are several things I need to fix before going live - these are documented in: [[Outstanding Problems]]
+                          
+</div>
+
+
+
+
+

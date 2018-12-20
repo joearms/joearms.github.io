@@ -1,0 +1,21 @@
+created: 20181219191144370
+modified: 20181220163345282
+tags: $:/tags/AboveStory
+title: Page
+type: text/vnd.tiddlywiki
+
+<$reveal type="match" state="$:/state/sidebar" text="no"></$reveal>
+
+
+
+<h1>Joe Armstrong - Erlang and other stuff</h1>
+
+<$button>[[Outstanding Problems]]</$button>
+<$button>[[Index]]</$button>
+ <$button>[[Don't click here]]</$button>
+<$button>[[Page]] </$button>
+<$button>[[Experiments]]</$button>
+
+{{$:/core/ui/SideBarSegments/search}}
+
+<$set name="$:/state/sidebar" value="no"></$set>
