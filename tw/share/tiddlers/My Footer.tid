@@ -1,0 +1,9 @@
+created: 20181224191135261
+list-after: $:/core/ui/ViewTemplate/body
+modified: 20181224191445492
+tags: $:/tags/ViewTemplate
+title: My Footer
+type: text/vnd.tiddlywiki
+
+
+<$twitter type="shareButton" url="https://https://joearms.github.io/index.html/{{!!title}}" text={{{ [<currentTiddler>encodeuricomponent[]addprefix[#]addprefix{$:/info/url/full}] }}} />
