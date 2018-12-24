@@ -1,5 +1,8 @@
+created: 20181220173752445
+modified: 20181220173839717
+tags: $:/tags/Stylesheet
 title: $:/themes/tiddlywiki/centralised/styles.tid
-tags: [[$:/tags/Stylesheet]]
+type: text/vnd.tiddlywiki
 
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline
 
@@ -11,7 +14,7 @@ tags: [[$:/tags/Stylesheet]]
 
 	html .tc-story-river {
 		position: relative;
-		width: 770px;
+		width: 800px;
 		padding: 42px;
 		margin: 0 auto;
 		text-align: left;
@@ -19,7 +22,7 @@ tags: [[$:/tags/Stylesheet]]
 
 	html .tc-sidebar-scrollable {
 		text-align: left;
-		left: 50%;
+		left: 300px;
 		right: 0;
 		margin-left: 343px;
 	}

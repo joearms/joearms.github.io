@@ -2,4 +2,4 @@
 
 # start TW on port 7123
 
-tiddlywiki share --server 7123
+tiddlywiki.js share --server 7123

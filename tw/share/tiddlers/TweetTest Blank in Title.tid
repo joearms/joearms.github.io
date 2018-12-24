@@ -1,0 +1,32 @@
+created: 20181224150455146
+modified: 20181224185720666
+tags: 
+title: TweetTest Blank in Title
+type: text/vnd.tiddlywiki
+
+! attempt one
+
+This does not work
+
+<$twitter type="shareButton" url="https://https://joearms.github.io/index.html/{{!!title}}" text="{{!title}}"/>
+
+! Jeremy's code
+
+
+<a href={{{ [<currentTiddler>encodeuricomponent[]addprefix[#]addprefix{$:/info/url/full}] }}}>Click me</a>
+
+! attempt two almost working
+
+<$twitter type="shareButton" url="https://https://joearms.github.io/index.html/{{!!title}}" text={{{ [<currentTiddler>encodeuricomponent[]addprefix[#]addprefix{$:/info/url/full}] }}} />
+
+! attempt three
+
+<!-- the tweet button -->
+        <p>         
+          <a href= "https://twitter.com/share"  class="twitter-share-button" 
+             data-url= {{{ [<currentTiddler>encodeuricomponent[]addprefix[#]addprefix{$:/info/url/full}] }}}
+        </p>
+  
+        <script type="text/javascript"
+                src="https://platform.twitter.com/widgets.js"></script>
+        <!-- end of tweet button -->
