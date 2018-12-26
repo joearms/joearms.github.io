@@ -1,0 +1,36 @@
+created: 20181225104558194
+modified: 20181225113431781
+tags: 
+title: ChandlerLater
+type: text/vnd.tiddlywiki
+
+! Later
+
+<div style="background:#e2fde2">
+
+<ul>
+<$list filter="[tag[chandler]tag[later]]">
+<li>
+<$link>
+<<currentTiddler>>
+</$link>
+
+<$fieldmangler>
+<$button>
+<$action-sendmessage $message="tm-add-tag" $param="now"/>
+<$action-sendmessage $message="tm-remove-tag" $param="later"/>
+{{$:/core/images/chevron-left}} now
+</$button>
+<$button>
+<$action-sendmessage $message="tm-add-tag" $param="done"/>
+<$action-sendmessage $message="tm-remove-tag" $param="later"/>
+{{$:/core/images/chevron-left}} done
+</$button>
+
+</$fieldmangler>
+
+
+</li>
+</$list>
+</ul>
+</div>

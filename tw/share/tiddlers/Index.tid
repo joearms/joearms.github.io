@@ -1,11 +1,27 @@
 created: 20181205212731577
-modified: 20181220165143917
+modified: 20181226144504944
 tags: blog
 title: Index
 type: text/vnd.tiddlywiki
 
+<<<
+This a [[Quine|https://en.wikipedia.org/wiki/Quine_(computing)]]
 
-{{PreRelease}}
+* It's a Blog.
+* It's interactive.
+* It's all in one file.
+* It's a [[Time Manager|Chandler]].
+* It contains a complete IDE.
+* It contains several programs.
+* The user can modify the content.
+
+* Save this file and run off-line in any browser
+* It's a [[TiddlyWiki|https://tiddlywiki.com/]].
+<<<
+
+This is a [[PreRelease]] and there are some [[Outstanding Problems]] [[Page]] controls the page layout and there are some [[Experiments]].
+
+The oldblog is at [[https://joearms.github.io/oldindex.html]].
 
 
 <<list-links "[tag[published]reverse[]]">>

@@ -1,0 +1,14 @@
+created: 20181225105636111
+modified: 20181225111350053
+tags: 
+title: ChandlerDesign
+type: text/vnd.tiddlywiki
+
+Use several tags
+
+* `chandler`
+* `now` `later` `done`
+* `reschedule` (a tag with later or done)
+
+! sub problems
+[[How do I make a new tiddler?]]

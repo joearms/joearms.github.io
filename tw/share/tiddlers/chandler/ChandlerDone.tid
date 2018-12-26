@@ -1,0 +1,35 @@
+created: 20181225104624889
+modified: 20181225113850323
+tags: 
+title: ChandlerDone
+type: text/vnd.tiddlywiki
+
+! Done
+
+<div style="background:#e8e8e8">
+<ul>
+<$list filter="[tag[chandler]tag[done]]">
+<li>
+<$link>
+<<currentTiddler>>
+</$link>
+
+<$fieldmangler>
+<$button>
+<$action-sendmessage $message="tm-add-tag" $param="now"/>
+<$action-sendmessage $message="tm-remove-tag" $param="done"/>
+{{$:/core/images/chevron-left}} now
+</$button>
+<$button>
+<$action-sendmessage $message="tm-add-tag" $param="later"/>
+<$action-sendmessage $message="tm-remove-tag" $param="done"/>
+{{$:/core/images/chevron-left}}later
+</$button>
+
+</$fieldmangler>
+
+
+</li>
+</$list>
+</ul>
+</div>

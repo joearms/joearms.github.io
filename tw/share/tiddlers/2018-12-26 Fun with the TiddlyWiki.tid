@@ -1,0 +1,256 @@
+created: 20181225192845391
+modified: 20181226144613480
+tags: published chandler now
+title: 2018-12-26 Fun with the TiddlyWiki
+type: text/vnd.tiddlywiki
+
+This is the first new blog article published in the form of a [[TiddlyWiki|https://tiddlywiki.com/]]. This means:
+
+* The blog is a program.
+* You can interact with the blog.
+* The blog contains most of the articles I've written in the last few years.
+* The blog is made from a single HTML file which should run off-line in any browser.
+* The blog contains a complete IDE powerful enough to recreate itself.
+* The blog is a Quine.
+* I hope the blog will be readable in 100+ years time.
+
+All you need is a browser.
+
+! Offline reading
+
+To read and play with this blog offline, just save the file on disk.
+
+This means (among other things) that you can
+read all my old articles, write code, modify the program in this blog even when you have no Internet access (like on a plane) -- added bonus you don't get distracted by clicking on links :-)
+
+! This blog is also a program
+
+Actually this blog contains more than one program but the one I'll be talking about most is a [[Chandler|https://en.wikipedia.org/wiki/Chandler_(software)]] Prototype.
+
+You can run it by clicking on the 
+<$button to="Chandler">Chandler</$button> button.
+
+
+<<<
+Chandler is a time managment program that is no longer supported.
+
+Chandler is described in the book https://en.wikipedia.org/wiki/Dreaming_in_Code
+
+You can also search in the 
+[[wayback machine|https://web.archive.org/web/*/http://blog.chandlerproject.org/]] and find more about Chandler.
+
+<<<
+
+In this blog I'll describe how I built a prototype of the Chandler system -- 
+
+The Chandler system is an example of
+a so called [[Triage|https://en.wikipedia.org/wiki/Triage]] system. This
+is in contrast to the more well-known
+~ToDo list type systems.
+
+Before we start I'll briefly discuss some of the characteristics of
+~ToDo and Triage systems.
+
+! ToDo systems
+
+<<<
+We're probably all familiar with “to do” lists, the web is full of descriptions of how to make ~ToDo lists. This is rather unfortunate since the I think that ~ToDo lists are an appaulingling bad way to organised and present tasks.
+<<<
+
+~ToDo systems classify tasks as
+being  either `done` or `not done`.
+
+~ToDo tasks start their life off as being `not done`.  Lists of all the ~ToDo tasks can be sorted, and when the task in question has been performed the status of the task is changed to `done` and the task is removed from the ~ToDo list never to return.
+
+This is really a bit silly since often tasks that are `done` can change their status back to being `not done`  -- in my mind ongoing tasks are neither `done` nor `not done` -- I view “doneness” not as a boolean quantity, but rather as a greyscale variable. My tasks are never `done` -- today they might be `75% done` tomorrow `72% done` who knows?
+
+
+! Triage Systems
+
+Triage systems classify tasks by when the task should be performed. The task must be done `now` or `later` when completed is it said to be in the `done` state.
+
+From a practical point of view this is far more useful than a ~ToDo system.
+When I start work I do not wish to know which jobs are done or no done, I wish to see at a glance which tasks I should do now. Having done the most important tasks I'll look at the tasks that should be done later.
+
+During the day, I' might want to dynamically re-assign tasks from `now` to `later` and possibly even `done` tasks may turn out to be not done and assigned a `now` status.
+
+According to https://en.wikipedia.org/wiki/Triage
+triage systems may have started in the Napoleonic wars.
+
+Medics assessing casualties would assign a priority to each patient. The status `now` meant the patient had to be treated immediately otherwise they would die. The next priority was `later` meaning that the patient needed to be treated but would not die immediately if not treated. Once all the `now` patients had been treated, the medics could look at the `later` patients.
+
+Once fully treated patients could be assigned a `done` status, meaning that their treatment was finished and they could go home.
+
+Of course, even a patient with state `done` might suffer a heart-attack on the way home and must therefore immediately put into the `now` category.
+
+In a triage system -- we will give each job a status of
+`now`, `later` or `done` and there should be a quick and easy way of changing a job status.
+
+This is basically what the Chandler system did - it managed lists of tasks that must be done now, later or which were done. 
+
+Recognising that tasks could change status a task was basically a write append log of the jobs that had to be done next. 
+
+There were also facilities to re-introduce tasks at specific time. So a task could be promoted to a `now` task based on a timer -- so for example once every 2'd Tuesday in a month we might take a task and add it to the `now` task list.
+
+! Implementing a Triage System in the TiddlyWiki
+
+Even though I'n not going to describe how the TiddlyWiki works I have to say a few things about it. 
+
+All data in a TiddlyWiki are stored in things called //Tiddlers// -- in fact this blog item is itself a tiddler.
+
+Tiddlers are written in WikiText (which is similar to Markdown) but can contain Javascript and Macros in an advanced extension langage. Tiddlers can also have tags.
+
+To model a Triage system I'll use four tags, as follows:
+
+* `chandler` -- means the tiddler is a task that is to be performed and is part of the [[Chandler]] application.
+
+* `now` -- means the tiddler contains a description of a task that must be formed immediately.
+
+* `later` -- means the tiddler contains a description of a task that can be performed after all the now tasks have been done.
+
+* `done` -- means the tiddler contains a description of a task that has been performed.
+
+! The Chandler Tiddler
+
+The Chandler tiddler is literally 4 lines of code, like this:
+
+```
+{{ChandlerButtons}}
+{{ChandlerNow}}
+{{ChandlerLater}}
+{{ChandlerDone}}
+```
+
+<<<
+You can see the code by clicking on [[Chandler]] and clicking on the pen symbol (after which you can edit the code)
+<<<
+
+The notation:
+
+```
+{{XYZ}}
+```
+
+Denotes a //transclusion//  -- which is basically a kind of “electric” inclusion.
+
+<<<
+The word Translusion was coined by Ted Nelson (who also coined the words Hypertext, micropayments, and Intertwingled).
+
+Ted Nelson envisaged a system called 
+[[Xanadu|https://en.wikipedia.org/wiki/Project_Xanadu]] which was the first every hypertext project -- Xanadu was never completed, but many of the ideas live on in the ~TiddlyWiki.
+<<<
+
+What do the transcluded tiddlers do?
+
+* ChandlerButtons creates a couple of buttons
+
+* ChandlerNow lists all tasks with tags `chander` and `now` and injects them into the `Chandler` tiddler with a heading and redish background.
+
+* ChandlerLater and ChandlerDone list the later and done tasks.
+
+! How does ChandlerNow work?
+
+Here's a version that almost works.
+
+The code:
+
+```
+<<list-links "[tag[chandler]tag[now]]">>
+```
+Means “make a clickable list of links to all tiddlers with links `chandler` and `now` -- the syntax of the above is pretty simple and the effect fairly obvious.
+
+Running this code results in the following.
+
+<div style="border:1px solid black">
+<<list-links "[tag[chandler]tag[now]]">>
+</div>
+
+What we also want are some buttons so the display is like this
+
+<div style="border:1px solid black">
+
+{{ChandlerNow}}
+</div>
+
+To do this we write something like this:
+
+```
+<$list filter=[tag[chandler]tag[now]]">
+   ... <<currentTiddler>> ...
+</$list>
+```
+
+The `<$list> ... <$/list>` can be thought of as a `for` loop
+saying something like:
+
+```
+for(i in matchingTiddlers) do
+     ...
+end
+```
+
+Only the loop variable is not called `i` but `<<currentTiddler>>`
+
+! Diving deeper into the code
+
+I'm not going to dive deeper into the code -- since this blog has just scratched the surface of what you can do with the tiddlyWiki.
+
+I'd encourage you to mess around with the blog - it's not just something to be read -- it's something that you can interact with. You can even interact with the Triage system and
+manage your own action lists.
+
+! How long did it take to write to [[Chandler]]?
+
+This took about 45 minutes -- most of the complexity is in the [[ChandlerNow]]  tiddler which is 34 lines of code -- [[ChandlerLater]] and [[ChandlerDone]] are just copies of ~ChandlerNow with some trivial changes.
+
+The top level tiddler [[Chandler]]  and [[ChandlerButtons]] were trivial.
+
+I have to discount the learning time -- when I started I already knew how to programmatically change tags -- but finding out how to do this took several hours. But now I know, so I can program somewhat quicker.
+
+! Exercise
+
+# Store this blog in a single file.
+# Open the [[$:/ControlPanel]].
+# Change the startup tiddler to Chandler.
+# Store the file.
+# Restart.
+
+! About the TiddlyWiki
+
+<<<
+TiddlyWikis are completely self-contained single file applications. They contain everything need to create and modify themselves.
+
+When you have finished updating a TiddlyWiki in an email and restart it on a different computer. All you need is a web browser.
+<<<
+
+The TiddlyWiki can be downloaded from https://tiddlywiki.com/ I'm not going to describe in any detail how the TiddlyWiki works, for that there are excellent descriptions at the distribution site.
+
+! The Ying Yang nature of the TiddlyWiki
+
+You can work with a ~TiddlyWiki in two different ways:
+
+# You can download it as a single HTML file, work with it and save it as a new HTML file
+# You can work with it in an “expanded” mode -- in this case all the individual tiddlers are stored on disk where you can see exactly how the program was built. To do this you'll have to install the `node.js` version of the ~TiddlyWiki server.
+
+You can take a single-file ~TiddlyWiki and convert it into a set of tiddler files, and you can do the inverse by taking a set of tiddler files and turning them into a single file application.
+
+This is rather like the way Apple designs applications. They either appear to the user as single `.app` files or you can examine their internal structure.
+
+In fact a ~TiddlyWiki is just a large set of small tiddlers together with a magic bootstrap.
+
+The packed single file version of this blog can be found by clicking on the tweet button at the bottom of this tiddler.
+
+The individual tiddlers are in:
+
+https://github.com/joearms/joearms.github.io/tree/master/tw/share/tiddlers
+
+The entire blog is in 
+https://github.com/joearms/joearms.github.io/tree/master/tw/
+with a few shell scripts to automate production of the blog.
+
+If you wish to correct any errors I have made, clone the repository change the appropriate tiddlers and push the change to me in the usual manner.
+
+! It's a Quine
+
+This is written in itself. This makes it very powerful -- once the system has become self-consistent we bootstrap new versions from the old versions.
+
+

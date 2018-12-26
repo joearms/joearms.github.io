@@ -1,5 +1,5 @@
 created: 20181219191144370
-modified: 20181220163345282
+modified: 20181226111058963
 tags: $:/tags/AboveStory
 title: Page
 type: text/vnd.tiddlywiki
@@ -10,11 +10,6 @@ type: text/vnd.tiddlywiki
 
 <h1>Joe Armstrong - Erlang and other stuff</h1>
 
-<$button>[[Outstanding Problems]]</$button>
-<$button>[[Index]]</$button>
- <$button>[[Don't click here]]</$button>
-<$button>[[Page]] </$button>
-<$button>[[Experiments]]</$button>
 
 {{$:/core/ui/SideBarSegments/search}}
 
