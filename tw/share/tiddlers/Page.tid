@@ -1,5 +1,5 @@
 created: 20181219191144370
-modified: 20181226111058963
+modified: 20181226150343814
 tags: $:/tags/AboveStory
 title: Page
 type: text/vnd.tiddlywiki
@@ -10,6 +10,7 @@ type: text/vnd.tiddlywiki
 
 <h1>Joe Armstrong - Erlang and other stuff</h1>
 
+<$button to="Index">Index</$button>
 
 {{$:/core/ui/SideBarSegments/search}}
 
