@@ -1,15 +1,14 @@
 created: 20160126120000000
-modified: 20181218215523548
+modified: 20181227185551122
 tags: published blog [[Software Messaging Architectures Organizations]]
 title: 2016-01-26 The unintentional side effects of a bad concurrency model
 type: text/vnd.tiddlywiki
-
 
 This is the first of four related articles about how we
 organize software. The others are:
 
 * [[Controlling Live Music|2016-01-27 Controlling Live Music]]
-* [[A Badass Way to Connect Programs Together|2016-01-28 A Badass Way to Connect Programs Together]]
+* [[A Badass Way to Connect Programs Together|2016-01-28 A Badass Way to Connect Programs Together]] 
 * [[Controlling Sound With OSC Messages|2016-01-29 Controlling Sound with OSC Messages]]
 
 How we collaborate, the organizations we work in and the
@@ -191,7 +190,7 @@ I'll call OSC-over-UDP.
 
 OSC-over-UDP as a way of gluing projects together is described
 in a [[A Badass Way to Connect Things Together|2016-01-28 A Badass Way to Connect Programs Together]].
- 
+
 ! Programming Languages
 
 Why do we have monolithic projects? I believe this is because it is

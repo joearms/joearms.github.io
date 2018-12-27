@@ -1,9 +1,8 @@
 created: 20160531120000000
-modified: 20181218215457443
+modified: 20181227170151119
 tags: published blog
 title: 2016-05-31 New Blogging Software
 type: text/vnd.tiddlywiki
-
 
 I finally did it and rewrote all my blogging software.
 
@@ -58,7 +57,7 @@ code for Hugo.
 
 I could run Jekyll locally and upload the generated HTML to GitHub,
 but I've noticed that even my local Jekyll tends to get bit-rot with
-time and has on several precious occasions just stopped working.
+time and has on several previous occasions just stopped working.
 
 
 <<<
