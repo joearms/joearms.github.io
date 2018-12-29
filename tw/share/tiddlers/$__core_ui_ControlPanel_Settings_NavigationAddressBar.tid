@@ -1,0 +1,16 @@
+caption: {{$:/language/ControlPanel/Settings/NavigationAddressBar/Caption}}
+created: 20181229105633627
+modified: 20181229105634882
+tags: $:/tags/ControlPanel/Settings
+title: $:/core/ui/ControlPanel/Settings/NavigationAddressBar
+type: text/vnd.tiddlywiki
+
+\define lingo-base() $:/language/ControlPanel/Settings/NavigationAddressBar/
+
+<$link to="$:/config/Navigation/UpdateAddressBar"><<lingo Hint>></$link>
+
+<$radio tiddler="$:/config/Navigation/UpdateAddressBar" value="permaview"> <<lingo Permaview/Description>> </$radio>
+
+<$radio tiddler="$:/config/Navigation/UpdateAddressBar" value="permalink"> <<lingo Permalink/Description>> </$radio>
+
+<$radio tiddler="$:/config/Navigation/UpdateAddressBar" value="no"> <<lingo No/Description>> </$radio>

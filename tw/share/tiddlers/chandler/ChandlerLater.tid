@@ -1,5 +1,5 @@
 created: 20181225104558194
-modified: 20181225113431781
+modified: 20181228213813599
 tags: 
 title: ChandlerLater
 type: text/vnd.tiddlywiki
@@ -9,7 +9,7 @@ type: text/vnd.tiddlywiki
 <div style="background:#e2fde2">
 
 <ul>
-<$list filter="[tag[chandler]tag[later]]">
+<$list filter="[tag[chandler]tag[later]reverse[]]">
 <li>
 <$link>
 <<currentTiddler>>
