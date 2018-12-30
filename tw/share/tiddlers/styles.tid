@@ -22,8 +22,8 @@ type: text/vnd.tiddlywiki
 
 	html .tc-sidebar-scrollable {
 		text-align: left;
-		left: 300px;
+		left: 50%;
 		right: 0;
-		margin-left: 343px;
+		margin-left: 200px;
 	}
 }
