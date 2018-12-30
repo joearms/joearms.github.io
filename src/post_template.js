@@ -28,9 +28,9 @@ function template(x){
     var url = "https://joearms.github.io/published" + x.disqus_id;
     var t = `
 <html>
-  <meta charset="UTF-8">
-  </meta>
-  <head>
+<head>
+    <meta charset="UTF-8">
+    <title>${x.title} - ${site_title()}</title>
     <link href="${dots(x)}/src/style.css" rel="stylesheet" type="text/css"></link>
   </head>
     <body>
