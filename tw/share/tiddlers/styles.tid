@@ -1,29 +1,19 @@
 created: 20181220173752445
 modified: 20181220173839717
 tags: $:/tags/Stylesheet
-title: $:/themes/tiddlywiki/centralised/styles.tid
+title: $:/_Styles
 type: text/vnd.tiddlywiki
 
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline
 
 @media (min-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
 
-	html .tc-page-container {
-		text-align: center;
-	}
-
 	html .tc-story-river {
-		position: relative;
 		width: 800px;
-		padding: 42px;
-		margin: 0 auto;
-		text-align: left;
 	}
 
 	html .tc-sidebar-scrollable {
-		text-align: left;
-		left: 50%;
-		right: 0;
-		margin-left: 200px;
+		margin-left: 358px;
 	}
+
 }
