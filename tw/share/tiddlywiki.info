@@ -3,12 +3,13 @@
     "plugins": [
         "tiddlywiki/tiddlyweb",
         "tiddlywiki/filesystem",
-        "tiddlywiki/highlight"
+        "tiddlywiki/highlight",
+        "tiddlywiki/twitter"
     ],
     "themes": [
         "tiddlywiki/vanilla",
         "tiddlywiki/snowwhite",
-	"tiddlywiki/centralised"
+    	"tiddlywiki/centralised"
     ],
     "build": {
         "index": [

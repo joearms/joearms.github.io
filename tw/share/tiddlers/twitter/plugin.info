@@ -1,7 +1,0 @@
-{
-	"title": "$:/plugins/tiddlywiki/twitter",
-	"description": "Twitter for TiddlyWiki",
-	"author": "JeremyRuston",
-	"core-version": ">=5.0.0",
-	"list": "readme usage"
-}
