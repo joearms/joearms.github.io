@@ -1,6 +1,6 @@
 created: 20181219172836203
 modified: 20181219172922756
-title: $:/themes/tiddlywiki/vanilla/metrics/storywidth
+title: $:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint
 type: text/vnd.tiddlywiki
 
-800px
+1050px
