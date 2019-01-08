@@ -1,0 +1,117 @@
+created: 20190108072714179
+modified: 20190108104216220
+tags: published chandler now
+title: 2019-01-08 My Eureka Moment with the TiddlyWiki
+type: text/vnd.tiddlywiki
+
+<a title="UnknownUnknown author [Public domain], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Archimede_bain.jpg"><img width="512" alt="Archimede bain" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Archimede_bain.jpg/512px-Archimede_bain.jpg"></a>
+
+
+I can't remember when it was, possibly in August 2018 that I had my Eureka moment with the [[TiddlyWkiki|https://tiddlywiki.com/]]
+
+All I knew about the TW was that I could write ~WikiText and organise my ideas into small chunks of data called “Tiddlers” -- the tiddler language itself was pretty much like markdown, so learning it was a breeze.
+
+<<<
+I thought to myself - I'll make a ~ToDo tiddler with a list of all the jobs I want to do
+<<<
+
+“Easy,” I thought and I made a single tiddler called MyToDo containing the following:
+
+<pre><$view tiddler="MyToDo"/></pre>
+
+Which looks like this when you click on it:
+
+>>>
+{{MyToDo}}
+>>>
+
+{{$:/core/images/tip}} //Since this is an interactive blog you can also click on MyToDo and experience the result rather than just reading about it.//
+
+
+So all my ~ToDo's are in a single tiddler -- when I'd done a task I could edit the tiddler and remove the line, or I could strike out the text,
+for example after I'd watered the dog I could edit the tidder to look like this:
+
+```
+* ~~Water the dog~~
+* Feed the plants
+* Have a nap
+
+```
+Which looks like this:
+
+<<<
+* ~~Water the dog~~
+* Feed the plants
+* Have a nap
+<<<
+
+So far all I've done is make a rather boring tiddler called MyToDo  nothing which I couldn't have done in something like Markdown.
+
+! Lightning strikes
+
+In a sense  the ~ToDo list was fine, in fact I used it for a while, then a few days I had my Eureka moment.
+
+This is no markdown this is the ~TidddlyWiki so we can do far far better.
+
+<<<
+//The individual entries in the ~ToDo list have nothing to do with each other -- they should be represented by four different tiddlers//
+<<<
+
+I was vaguely aware of tags, so I made three different tiddlers called BuyTheMilk, HaveANap and WaterTheDog and gave them the tag <<tag todo>> (You can click on the tiddlers or on the tag to see the more ...).
+
+Then I created a single page ToDoJobs containing the following:
+
+<pre><$view tiddler="ToDoJobs"/></pre>
+
+
+which looks like this when you click on it:
+
+<<<
+{{ToDoJobs}}
+<<<
+
+This was amazing -- the single line 
+
+`<<list-links "[tag[todo]]">>`
+
+Listed all the tiddlers with the tag <<tag todo>>.
+
+! Why was this great?
+
+In the first version all my jobs were listed in the same tiddler //even though the individual jobs have nothing to do with each other//
+
+In the second version I created one tiddler per job. Since the jobs are totally independent this seems to me to be a far better representation. Things that have nothing to do with each other should not be stored together.
+
+
+!! It's all about the correct level of granularity
+
+Choosing the correct level of granularity to store data is important when you want to organise and reuse data. If a tiddler contains two unrelated fragments of information it cannot easily be reused.
+
+If each tiddler contains an independent fragment of information then we can decide at a later stage to reuse the information in the tiddler by including it it another tiddler.
+
+Adding tags to the tiddler make such reuse very easy.
+
+Using The inbuilt query language `<<list-links ...>>` we can construct pages from tiddlers combining the data in various creative ways.
+
+! Now's the time to play with the system
+
+Unlike conventional blogs which are read-only this blog contains active code, so you can click on any of the links in this tiddler and see the code and see how the system behaves.
+
+If I've whet your appetite you might like to head over to 
+https://tiddlywiki.com/#Learning
+and see what else you can do :-)
+
+! Exercise
+
+Add another tag `done` and
+a new filter 
+
+`<<list-links "[tag[todo]!tag[done]]">>`
+
+Which lists all tiddlers with tag `todo` and not tag `done`.
+
+Make a new tiddler that lists all the `done` tasks.
+
+
+
+

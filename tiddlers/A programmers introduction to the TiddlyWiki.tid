@@ -1,8 +1,10 @@
 created: 20181216095733996
-modified: 20181218104052743
+modified: 20190102191138570
 tags: ongithub
 title: A programmers introduction to the TiddlyWiki
 type: text/vnd.tiddlywiki
+
+! Introduction
 
 This introduction assumes you know  HTML, Markdown, JS and a few programming languages
 
@@ -22,6 +24,25 @@ A Tiddler is a container for the following information:
 # Diverse meta data (like time last modified etc.)
 
 The expansion of ~WikiData can be made to depend upon the values of the tags and various other meta data associated with the tiddler. So, for example, we can arrange that all tiddlers with the tag `secret` are displayed with a large banner at the top of the rendered tiddler, containing the text //Secret do not publish// - I'll show you how do do this later.
+
+! Extensabilty
+
+The TiddlyWiki can be extended with the use of plugins.
+
+So making a diagram like this:
+
+<$railroad text="""
+start [:optional] {repeated +","} "yes" end
+"""/>
+
+Is as easy as entering the following into the
+built-in editor:
+
+```
+<$railroad text="""
+start [:optional] {repeated +","} "yes" end
+"""/>
+```
 
 To start the discussion - I'll only talk about Tiddlers with no tags and ones which are only subject to what might be called “standard evaluation”. 
 
