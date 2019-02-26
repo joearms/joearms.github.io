@@ -1,0 +1,83 @@
+created: 20190226122417099
+modified: 20190226131021152
+tags: published
+title: 2019-02-26 Setting up a TiddlyWiki website on GitHub Pages
+type: text/vnd.tiddlywiki
+
+I've been getting some questions about how you can host your ~TiddlyWiki site on ~GitHub.
+
+! Step 1 - setup ~GitHub pages
+
+To start with you'll need an account on ~GitHub. Then you'll need to setup ~GitHub Pages - this is really easy just follow the instructions at
+https://pages.github.com/.
+
+My github account is at https://github.com/joearms and my ~GitHub pages directory is at https://github.com/joearms/joearms.github.io
+
+Having set this up if I create a file called `index.html` and store it in 
+https://github.com/joearms/joearms.github.io/blob/master/index.html. Having done this it will magically appear at
+https://joearms.github.io/index.html.
+
+All the files under https://github.com/joearms/joearms.github.io
+can be seen through a web browser pointed at
+https://joearms.github.io/
+
+! Step 2 - publish your TW
+
+
+A ~TiddlyWiki is a single HTML file. So you can either just download [[An empty TiddlyWiki|https://tiddlywiki.com/#Empty%20Edition:%5B%5BEmpty%20Edition%5D%5D]]
+create your wiki save the file and upload this to your github account.
+
+Or, use the node.js server version of the ~TiddlyWiki ...
+
+! Making a TW using the node TW server
+
+In my case I use the node.js version of the ~TiddlyWiki - 
+You have to follow these [[installation instructions|https://tiddlywiki.com/static/Installing%2520TiddlyWiki%2520on%2520Node.js.html]] and make a global executable called `tiddlywiki.js`
+
+The node server stores all the individual tiddlers as files in the regular file system, this fits nicely in with my other programs.
+
+One this is done I have a 
+couple of scripts to simplify things
+`start` is as follows
+
+```
+#!/bin/sh
+
+# start TW on port 7123
+
+tiddlywiki.js share --server 7123
+```
+
+This starts a ~TiddlyWiki server on port 7123 `share` is the name of a directory where all the tiddlers are stored.
+
+And `publish`
+is:
+
+```
+#!/bin/sh
+
+# build a single File TW in share/output/index.html
+
+tiddlywiki.js share --build index
+mv share/output/index.html ..
+```
+
+So to make my blog I run `start` - and edit the blog in my browser. 
+
+I create a new blog with a title like `2019-02-26 My Title` and give this the tag `published` (this is so the blog will end up in the index).
+
+Look at [[Index]] to see how this is done :-)
+
+When it's ready I stop the node server and run `publish`.
+
+Then I check in the new file `index.html`
+and any of the tiddlers that have changed. Then commit and upload to ~GitHub.
+
+If you poke around under 
+
+https://github.com/joearms/joearms.github.io/tree/master/tw
+you'll see what was need to create this wiki.
+
+
+
+
